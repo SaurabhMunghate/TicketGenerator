@@ -1,0 +1,211 @@
+﻿    <!--<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ticket Generator</title>
+
+        <style>
+            @media print {
+                @page {
+                    size: 3in 1in;
+                    /* Setting width to 3 inches and height to 1 inch */
+                    margin: 0;
+                    /* Adjust margins as needed */
+                }
+
+                body {
+                    width: 3in;
+                    height: 1in;
+                    margin: 0;
+                    /* Reset body margin for printing */
+                }
+            }
+
+            #ticket {
+                width: 312px;
+                border: 12px solid green;
+                padding: 48px;
+                margin: 18px;
+            }
+
+            #ticket {
+                width: 100%;
+                /* Make sure the content takes the full width for printing */
+                border: none;
+                /* Remove border for printing */
+                padding: 0;
+                /* Remove padding for printing */
+                margin: 0;
+                /* Remove margin for printing */
+            }
+
+            .desktop {
+                //background-color: #ffffff;
+                //display: flex;
+                //flex-direction: row;
+                //justify-content: center;
+                //width: 100%;
+            }
+
+            .desktop .overlap-group-wrapper {
+                background-color: #ffffff;
+                width: 1440px;
+                height: 1024px;
+            }
+
+            .desktop .overlap-group {
+                position: relative;
+                width: 1006px;
+                height: 307px;
+                //top: 136px;
+                left: 217px;
+                background-color: #fabbbb;
+            }
+
+            .desktop .rectangle {
+                position: relative;
+                width: 212px;
+                height: 192px;
+                top: 53px;
+                left: 736px;
+                background-color: #d9d9d9;
+            }
+        </style>
+
+
+
+        <link rel="stylesheet">
+    </head>
+
+    <body>
+        <h1>Generate Your Ticket</h1>
+
+
+        <div class="desktop" id="ticket">
+
+
+            <div>
+                <div style="position: relative;
+    width: 1006px;
+    height: 307px;
+    //top: 136px;
+    left: 217px;
+    background-color: #fabbbb;">
+                    <div class="rectangle"></div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div style="border: 12px solid green; width: 612px;" id="tickett">
+
+            <div>
+                Ticket Type: Economy<br>
+                Name: John Doe<br>
+                Date: 2023-12-14<br>
+                Duration: 2 hours<br>
+                Start/End Destination: City A to City B<br>
+                Site Number: 123<br>
+            </div>
+
+            <div style="border: 12px solid black;" id="qrCodeContainer"></div>
+        </div>
+
+
+
+        <div style="" class="ticket-form">
+            <label for="ticket-type">Ticket Type:</label>
+            <select name="ticket-type" id="ticket-type">
+                <option value="group_12">Group up to 12 people</option>
+                <option value="individual">Individual</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="qrData">Enter data to encode:</label>
+            <input type="text" name="name" id="qrDataTextBox" required>
+
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" required>
+
+            <label for="date">Date:</label>
+            <input type="date" name="date" id="date" required>
+
+            <label for="duration">Duration (Hours):</label>
+            <input type="number" min="1" name="duration" id="duration" required>
+
+            <label for="start-destination">Start Destination:</label>
+            <input type="text" name="start-destination" id="start-destination" required>
+
+            <label for="end-destination">End Destination:</label>
+            <input type="text" name="end-destination" id="end-destination" required>
+
+            <label for="site-number">Site Number:</label>
+            <input type="text" name="site-number" id="site-number" required>
+
+            <button id="generate-ticket">Generate Ticket</button>
+        </div>
+
+        <div id="ticket-container" class="hidden">
+            <div class="ticket">
+                <h2 class="ticket-header">Your Ticket</h2>
+                <div class="ticket-body">
+                </div>
+                <button class="print-button" onclick="printTicket();">Print Ticket</button>
+                <button type="button" onclick="generateButton_Click()">Generate QR Code</button>
+
+            </div>
+        </div>
+
+
+        <script type="text/javascript">
+            function printTicket() {
+                var printWindow = window.open('', '_blank');
+
+                // Open a new window or iframe
+                printWindow.document.write('<html><head><title>Ticket</title></head><body>');
+
+                // Copy the content of the #ticket div to the new window or iframe
+                var ticketContent = document.getElementById('ticket').innerHTML;
+                printWindow.document.write(ticketContent);
+
+                // Close the HTML tags and write the print button
+                printWindow.document.write('</body></html>');
+                printWindow.document.close();
+
+                // Trigger the print functionality in the new window or iframe
+                printWindow.print();
+            }
+            function generateButton_Click() {
+                console.log("generateButton_Click");
+                var dataToEncode = document.getElementById('qrDataTextBox').value;
+
+                $.ajax({
+                    url: '/empty_class', // Assuming this is the correct endpoint
+                    type: 'POST',
+                    data: JSON.stringify({ Data: dataToEncode }),
+                    contentType: 'application/json',
+                    success: function (response) {
+                        console.log(response); // Corrected from Console.log to console.log
+                        $("#qrCodeContainer").html("<img style=\"height: 200px;\" src=\"data:image/png;base64," + response + "\" alt=\"QR Code\" />");
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error
+                        console.error("Error generating QR code: " + error);
+                    }
+                });
+            }
+
+        </script>
+
+
+
+    </body>
+
+    </html>-->

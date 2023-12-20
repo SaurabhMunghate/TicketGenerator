@@ -1,0 +1,140 @@
+﻿<%@ Page Language="C#" Inherits="TicketGenerator.Views.Ticket" %>
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <style>
+.image {
+    width: 2000px;
+    height: 647px;
+}
+
+.image .flight-number-date {
+    position: fixed;
+    width: 1058px;
+    height: 340px;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
+#qrCodeContainer {
+            border:1px solid black;
+            position: fixed;
+            width: 1058px;
+            height: 340px;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+            }
+            .box {
+width: 275px;
+height: 257px;
+}
+.box .rectangle {
+position: fixed;
+width: 152px;
+height: 152px;
+top: 159px;
+left: 881px;
+background-color: #d9d9d9;
+border: 2px solid black; /* Adjust the border thickness as needed */
+
+}
+
+            
+        </style>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="globals.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+        
+        <script type="text/javascript">
+            function printTicket() {
+            
+               generateButton_Click();
+             
+                var printWindow = window.open('', '_blank');
+
+                // Open a new window or iframe
+                printWindow.document.write('<html><head><title>Ticket</title></head><body>');
+
+                // Copy the content of the #ticket div to the new window or iframe
+                var ticketContent = document.getElementById('ticket').innerHTML;
+                printWindow.document.write(ticketContent);
+
+                // Close the HTML tags and write the print button
+                printWindow.document.write('</body></html>');
+                printWindow.document.close();
+
+                // Trigger the print functionality in the new window or iframe
+                printWindow.print();
+            }
+            function generateButton_Click() {
+                console.log("generateButton_Click");
+                var dataToEncode = "";
+                 dataToEncode= document.getElementById('qrDataTextBox').value;
+
+                $.ajax({
+                    url: '/byte_array_base', // Assuming this is the correct endpoint
+                    type: 'POST',
+                    data: JSON.stringify({ Data: dataToEncode }),
+                    contentType: 'application/json',
+                    success: function (response) {
+                        console.log(response); // Corrected from Console.log to console.log
+                        $("#qrCodeContainer").html("<img style=\"z-index:99;height: 200px;position: fixed;width: 188px;height: 188px;top: 397px;left: 1747px;background-color: #d9d9d9;\" src=\"data:image/png;base64," + response + "\" alt=\"QR Code\" />");
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error
+                        console.error("Error generating QR code: " + error);
+                    }
+                });
+            }
+
+        </script>
+        
+<div id="ticket">
+ <div  class="image"><img class="flight-number-date" src="App_Data/flight-number-date-1.png" /></div>
+ <div class="qrCodeContainer" id="qrCodeContainer"></div>
+ <div class="box"><div class="rectangle"></div></div>
+</div>
+
+<div class="input-container">
+        <label for="ticketType">Ticket Type:</label>
+        <input type="text" id="ticketType" placeholder="Ticket Type" required="">
+        <br>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Name" required="">
+        <br>
+
+        <label for="date">Date:</label>
+        <input type="text" id="date" placeholder="Date" required="">
+        <br>
+
+        <label for="duration">Duration:</label>
+        <input type="text" id="duration" placeholder="Duration" required="">
+        <br>
+
+        <label for="destination">Start/End Destination:</label>
+        <input type="text" id="destination" placeholder="Start/End Destination" required="">
+        <br>
+
+        <label for="siteNumber">Site Number:</label>
+        <input type="text" id="siteNumber" placeholder="Site Number" required="">
+        <br>
+
+        <button type="button" onclick="generateTicket()">Generate Ticket</button>
+        <button type="button" onclick="generateButton_Click()">Generate Ticket</button>
+    </div>
+
+            <label for="qrData">Enter data to encode:</label>
+            <input type="text" name="name" id="qrDataTextBox">
+
+        
+        <button class="print-button" onclick="printTicket();">Print Ticket</button>
+         <button type="button" onclick="generateButton_Click()">Generate QR Code</button>
+
+</body>
+</html>

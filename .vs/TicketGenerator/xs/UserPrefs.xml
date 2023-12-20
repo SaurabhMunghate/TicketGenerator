@@ -1,0 +1,46 @@
+﻿<Properties StartupConfiguration="{9AB6641C-1F75-4098-A45D-8474191EF5C5}|">
+  <MonoDevelop.Ide.ItemProperties.TicketGenerator PreferredExecutionTarget="/usr/bin/google-chrome-stable" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="TicketGenerator/Views/QRgenerat.aspx.designer.cs">
+    <Files>
+      <File FileName="TicketGenerator/Views/Login.aspx" Line="3" Column="17" />
+      <File FileName="TicketGenerator/Ticket1.txt" Line="168" Column="37" />
+      <File FileName="TicketGenerator/Controllers/ByteArrayBase64.cs" Line="58" Column="62" />
+      <File FileName="TicketGenerator/Views/Ticket1.aspx" Line="30" Column="31" />
+      <File FileName="TicketGenerator/Views/Ticket1.aspx.cs" Line="13" Column="1" />
+      <File FileName="TicketGenerator/Views/Ticket2.aspx" Line="18" Column="34" />
+      <File FileName="TicketGenerator/Views/TicketBox.aspx" Line="34" Column="44" />
+      <File FileName="TicketGenerator/Views/QRgenerat.aspx" Line="25" Column="53" />
+      <File FileName="TicketGenerator/Views/QRgenerat.aspx.designer.cs" Line="127" Column="65" />
+      <File FileName="TicketGenerator/Views/TicketBox.aspx.designer.cs" Line="17" Column="1" />
+      <File FileName="TicketGenerator/EmptyTextFile.txt" Line="120" Column="17" />
+      <File FileName="TicketGenerator/Views/Ticket.aspx.designer.cs" Line="17" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="TicketGenerator" expanded="True">
+            <Node name="TicketGenerator" expanded="True">
+              <Node name="App_Start" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Text" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="QRgenerat.aspx" expanded="True">
+                  <Node name="QRgenerat.aspx.designer.cs" selected="True" />
+                </Node>
+                <Node name="Ticket.aspx" expanded="True" />
+                <Node name="TicketBox.aspx" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.TicketGenerator.Tests FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
